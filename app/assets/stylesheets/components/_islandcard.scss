@@ -8,7 +8,6 @@
 }
 
 .card-trip > img {
-  height: 75%;
   width: 100%;
   object-fit: cover;
 }
@@ -34,7 +33,7 @@
   justify-content: space-between;
   align-items: flex-end;
   position: relative;
-  height: 25%;
+  padding: 12px;
 }
 
 .card-trip-infos .card-trip-user {
@@ -101,4 +100,14 @@ a{
   text-decoration: none;
   background-color: transparent;
   font-family: 'Poppins', sans-serif,'italic';
+}
+.btn-primary {
+  border-radius: 39px;
+  color: #545775;
+  background-color:white;
+  border-color: white;
+}
+.index-top{
+  display: flex;
+  justify-content: space-between;
 }
