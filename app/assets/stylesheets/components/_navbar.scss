@@ -19,18 +19,32 @@
 }
 
 .navbar-light .navbar-nav .nav-link {
-  color: white;
+  // color: white;
+  color: lightgrey;
 }
 
 .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
-  color: white;
+  // color: white;
 }
 
-.dropdown-item {
-  color: white;
+// .dropdown-item {
+//   color: white;
+// }
+
+.dropdown {
+  margin: auto;
 }
 
 .dropdown-item:hover {
   color: white;
   background-color: transparent;
+}
+
+.hamburger::after {
+  display: none;
+}
+
+.dropdown-menu {
+  right: 0;
+  left: auto;
 }

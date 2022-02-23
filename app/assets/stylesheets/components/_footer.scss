@@ -40,8 +40,23 @@ body{
 .countries-list {
   list-style: none;
   padding: 0;
-  font-family: "Comic Sans MS";
+  font-family: 'Poppins', sans-serif,'italic';
   display: flex;
   justify-content: space-between;
   width: 55%;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  // align-items: center;
+}
+p{
+  margin-top: -16px;
+  margin-bottom: 1rem;
+  height: 23px;
+}
+input{
+  border-radius: 46px;
+  border-color: #545775;
 }
