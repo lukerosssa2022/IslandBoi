@@ -1,47 +1,103 @@
-<h1><%= @user.email %> dashboard</h1>
+<h1 style="margin-top: 151px; font-size: 1em;"><%= @user.email %> dashboard</h1>
 
-<h3>Owned slands for rent:</h3>
-
+<div class="cards">
 <% @islands.each do |island| %>
   <% if current_user == island.user %>
-    <p><%= link_to island.name, island_path(island) %></p>
+  <div class="card-trip">
+          <% if island.main_photo.attached? %>
+            <div class="island-card" style="background-image: url(<%= cl_image_path island.main_photo.key %>);"></div>
+          <% else %>
+            <div class="island-card" style="background-image: url('https://images.unsplash.com/photo-1553603227-2358aabe821e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aXNsYW5kfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60');"></div>
+          <% end %>
+          <div class="card-trip-infos">
+            <div class="island-info">
+              <p>name: <%= island.name %></p>
+              <div class="card-trip-pricing">
+                <p>
+                  <%= island.territory %>
+                </p>
+              </div>
+            </div>
+  </div>
+</div>
   <%end %>
 <% end %>
-
-
-<h3>recieved bookings:</h3>
-<% @received_bookings.each do |received_booking| %>
-  <p>start date: <%= received_booking.start_date %></p>
-  <p>end date: <%= received_booking.end_date %></p>
-  <p>comment: <%= received_booking.comment %></p>
-  <p>total price: <%= received_booking.cal_total_price %> $</p>
-  <% if received_booking.status == 'pending' %>
-    <%= button_to 'accept', booking_path(received_booking, {status: 'accepted'}), method: :patch %>
-    <%= button_to 'decline', booking_path(received_booking, {status: 'declined'}), method: :patch %>
-  <% elsif received_booking.status == 'accepted' %>
-    <p>accepted</p>
-  <% else %>
-    <p>declined</p>
-  <% end %>
+</div>
 
 
 
-
-
-<h4 style="font-family: American Typewriter">applied bookings</h4>
+<h3 style="font-size: 1em;">recieved bookings:</h3>
 <div class="cards">
+    <% @received_bookings.each do |received_booking| %>
+
+        <div class="card-trip">
+          <% if received_booking.island.main_photo.present? %>
+            <%= cl_image_tag island.main_photo.key %>
+          <% else %>
+            <img src="https://images.unsplash.com/photo-1553603227-2358aabe821e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aXNsYW5kfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" />
+          <% end %>
+          <div class="card-trip-infos">
+            <div class="island-info">
+              <p>start date: <%= received_booking.start_date %></p>
+              <p>end date: <%= received_booking.end_date %></p>
+              <p>comment: <%= received_booking.comment %></p>
+              <p>total price: <%= received_booking.cal_total_price %> $</p>
+                <% if received_booking.status == 'pending' %>
+                <div style="display: flex;">
+                  <%= button_to 'accept', booking_path(received_booking, {status: 'accepted'}), method: :patch, class: "btn btn-primary" %>
+                  <%= button_to 'decline', booking_path(received_booking, {status: 'declined'}), method: :patch, class: "btn btn-primary" %>
+                </div>
+              </div>
+                <% elsif received_booking.status == 'accepted' %>
+                  <p>accepted</p>
+                <% else %>
+                  <p>declined</p>
+              <% end %>
+              <div class="card-trip-pricing">
+                <p>
+                  <%= received_booking.total_price %>
+                </p>
+              </div>
+          </div>
+        </div>
+    <% end %>
+</div>
 
 
 
-<h3>applied bookings</h3>
+<h3 style="font-size: 1em;">applied bookings</h3>
+<div class="cards">
 <% @applied_bookings.each do |applied_booking| %>
-  <p>start date: <%= applied_booking.start_date %></p>
-  <p>end date: <%= applied_booking.end_date %></p>
-  <p>total price: <%= applied_booking.cal_total_price %> $</p>
-  <p>status: <%= applied_booking.status %></p>
+        <div class="card-trip">
+          <% if applied_booking.island.main_photo.present? %>
+            <%= cl_image_tag island.main_photo.key %>
+          <% else %>
+            <img src="https://images.unsplash.com/photo-1553603227-2358aabe821e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aXNsYW5kfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" />
+          <% end %>
+          <div class="card-trip-infos">
+            <div class="island-info">
+              <p>start date: <%= applied_booking.start_date %></p>
+              <p>end date: <%= applied_booking.end_date %></p>
+              <p>comment: <%= applied_booking.comment %></p>
+              <% if applied_booking.status == 'pending' %>
+                <p>pending</p>
+              <% elsif applied_booking.status == 'accepted' %>
+                <p>accepted</p>
+              <% else %>
+                <p>declined</p>
+              <% end %>
+              <div class="card-trip-pricing">
+                <p>
+                  <%= applied_booking.total_price %>
+                </p>
+              </div>
+          </div>
+        </div>
+      </div>
 <% end %>
+</div>
 
-<%= link_to 'Back to all the islands', islands_path %>
+<%= link_to 'Back to all the islands', islands_path, class: "btn btn-primary", style: "margin: 18px;" %>
 <%# display all recived/applied bookings %>
 <%# for the recieved bookings - add accpt/regect btn %>
 <%# applied bookings - see the status %>
