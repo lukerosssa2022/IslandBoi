@@ -1,5 +1,6 @@
 class IslandsController < ApplicationController
   before_action :find_island, only: %i[edit destroy]
+  skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
     if params[:query].present?
