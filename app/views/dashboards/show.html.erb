@@ -1,15 +1,33 @@
-<h1 style="margin-top: 30px;"><%= @user.email %> dashboard</h1>
+<h1 style="margin-top: 151px; font-size: 1em;"><%= @user.email %> dashboard</h1>
 
-<h3>Owned islands for rent:</h3>
-
+<div class="cards">
 <% @islands.each do |island| %>
   <% if current_user == island.user %>
-    <p><%= link_to island.name, island_path(island) %></p>
+  <div class="card-trip">
+          <% if island.main_photo.attached? %>
+            <div class="island-card" style="background-image: url(<%= cl_image_path island.main_photo.key %>);"></div>
+          <% else %>
+            <div class="island-card" style="background-image: url('https://images.unsplash.com/photo-1553603227-2358aabe821e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aXNsYW5kfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60');"></div>
+          <% end %>
+          <div class="card-trip-infos">
+            <div class="island-info">
+              <p>name: <%= island.name %></p>
+              <div class="card-trip-pricing">
+                <p>
+                  <%= island.territory %>
+                </p>
+              </div>
+            </div>
+  </div>
+</div>
   <%end %>
 <% end %>
+</div>
 
 
-<h3>recieved bookings:</h3>
+
+
+<h3 style="font-size: 1em;">recieved bookings:</h3>
 <div class="cards">
     <% @received_bookings.each do |received_booking| %>
 
@@ -48,7 +66,7 @@
 
 
 
-<h3>applied bookings</h3>
+<h3 style="font-size: 1em;">applied bookings</h3>
 <div class="cards">
 <% @applied_bookings.each do |applied_booking| %>
         <div class="card-trip">
