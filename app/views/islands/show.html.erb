@@ -2,16 +2,30 @@
   <h1 style="text-align: center; color: black;"><strong><%= @island.name %></strong></h1>
 
   <div class="show-page-images">
-    <img src="https://media.nationalgeographic.org/assets/photos/000/268/26833.jpg" class="show-page-image-left">
+    <% if @island.main_photo.present? %>
+      <%= cl_image_tag @island.main_photo.key, class: "show-page-image-left" %>
+    <% else %>
+      <img src="https://media.nationalgeographic.org/assets/photos/000/268/26833.jpg" class="show-page-image-left">
+    <% end  %>
 
     <div class="show-page-images-right">
-      <img src="https://www.treehugger.com/thmb/c8YBoBZfJLKUPGlFaQ7RT7J6xNA=/3840x2160/filters:fill(auto,1)/GettyImages-1296713537-aec94fc7c0154ed5812d2017e856f8d7.jpg" class="show-page-image-right">
-      <img src="https://cdn.cnn.com/cnnnext/dam/assets/180219103122-zanzibar-and-its-islands---mnemba-a-view-from-the-sky-mnemba-island-lodge.jpg" class="show-page-image-right">
-      <img src="https://www.treehugger.com/thmb/c8YBoBZfJLKUPGlFaQ7RT7J6xNA=/3840x2160/filters:fill(auto,1)/GettyImages-1296713537-aec94fc7c0154ed5812d2017e856f8d7.jpg" class="show-page-image-right">
-      <img src="https://cdn.cnn.com/cnnnext/dam/assets/180219103122-zanzibar-and-its-islands---mnemba-a-view-from-the-sky-mnemba-island-lodge.jpg" class="show-page-image-right">
+      <% if @island.photos.present? %>
+        <% n = @island.photos.length %>
+        <% @island.photos.each do |photo| %>
+          <%= cl_image_tag photo.key, class: "show-page-image-right" %>
+          <% end %>
+          <% if n < 4 %>
+            <% Island::PHOTOS[n...4].each do |photo| %>
+              <%= image_tag photo, class: "show-page-image-right" %>
+            <% end  %>
+          <% end  %>
+      <% else %>
+        <% Island::PHOTOS.each do |photo| %>
+          <%= image_tag photo, class: "show-page-image-right" %>
+        <% end  %>
+      <% end %>
     </div>
   </div>
-
 
     <div>
   <h5 class="ititle">
