@@ -1,5 +1,14 @@
 <h1><%= @user.email %> dashboard</h1>
 
+<h3>Owned slands for rent:</h3>
+
+<% @islands.each do |island| %>
+  <% if current_user == island.user %>
+    <p><%= link_to island.name, island_path(island) %></p>
+  <%end %>
+<% end %>
+
+
 <h3>recieved bookings:</h3>
 <% @received_bookings.each do |received_booking| %>
   <p>start date: <%= received_booking.start_date %></p>
