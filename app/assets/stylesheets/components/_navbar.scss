@@ -7,9 +7,22 @@
   transition: 0.5s background-color ease;
 }
 
+.navbar-lewagon .dropdown-item {
+  color: white;
+}
+
 .navbar-white {
   background-color: white;
 }
+
+.navbar-white .dropdown-item {
+  color: black;
+
+  &:hover {
+    color: black;
+  }
+}
+
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
