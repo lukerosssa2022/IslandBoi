@@ -1,5 +1,5 @@
 <div class="container">
-  <h1 style="text-align: center; color: black;"><strong><%= @island.name %></strong></h1>
+  <h1 style="text-align: center; color: black; margin-top: 110px;"><strong><%= @island.name %></strong></h1>
 
   <div class="show-page-images">
     <% if @island.main_photo.present? %>
@@ -27,9 +27,11 @@
     </div>
   </div>
 
-    <div>
+    <div class="show-page-bottom">
   <h5 class="ititle">
     <strong><%= @island.name %>, <%= @island.territory %></strong>
+    <br>
+    <br>
     <p>$<%= @island.price_per_day %> Per Day, <%= @island.size %>sq</p>
       <%# <strong>Country:</strong> <%= @island.country %> <%#%>
       <center style="color: black;" class="description">
@@ -37,9 +39,22 @@
       <br>
       <%= @island.description %>
       </center>
+      </h5>
       <%# <strong>Price per day:</strong> <%= @island.price_per_day %> <%#%>
       <%# <strong>Is it avilable?</strong> <%= @island.avilable %> <%#%>
       <%# <strong>Size:</strong> <%= @island.size %> <%#%>
+
+
+      <% if current_user != @island.user %>
+        <div class="form">
+          <%=simple_form_for [@island, @booking] do |f|  %>
+            <%=f.input :start_date  %>
+            <%=f.input :end_date %>
+            <%=f.input :comment %>
+            <%=f.submit %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
 </div>
 
@@ -49,16 +64,8 @@
     <%= button_to 'Delete', island_path(@island), method: :delete, data: {confirm: 'confirm delete'}, class: "btn1" %>
   <% end %>
 
-  <% if current_user != @island.user %>
-    <%=simple_form_for [@island, @booking] do |f|  %>
-      <%=f.input :start_date  %>
-      <%=f.input :end_date %>
-      <%=f.input :comment %>
-      <%=f.submit %>
-    <% end %>
-  <% end %>
 
 
-    <button class="btn2" style="margin-left: 10px;"><%= link_to 'Back', islands_path %></button>
 </div>
+    <center><button class="btn1" style="margin-left: 10px;"><%= link_to 'Back', islands_path %></center></button>
 </div>

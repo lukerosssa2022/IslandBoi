@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
   def create
+    @island = Island.find(params[:island_id])
     @booking = Booking.new(booking_params)
     @booking.user = current_user
     @booking.island = Island.find(params[:island_id])

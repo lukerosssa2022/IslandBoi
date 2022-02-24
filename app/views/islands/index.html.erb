@@ -22,25 +22,28 @@
  </div>
 <div class="cards">
   <% @islands.each do |island| %>
-    <div class="card-trip">
-      <img src="https://images.unsplash.com/photo-1553603227-2358aabe821e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aXNsYW5kfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" />
-      <div class="card-trip-infos">
-        <div class="island-info">
-          <h2><%= link_to island.name, island_path(island) %></h2>
-          <p><%= island.territory %></p>
-          <p><%= island.description %></p>
-          <p>Size: <%= island.size %></p>
-        </div>
-          <div class="card-trip-pricing">
-            <p>
-              <%= island.price_per_day%>
-            </p>
-            <% if island.avilable %>
-              <p>Available</p>
-            <% end %>
+    <% if current_user != island.user %>
+      <div class="card-trip">
+        <% if island.main_photo.present? %>
+          <%= cl_image_tag island.main_photo.key %>
+        <% else %>
+          <img src="https://images.unsplash.com/photo-1553603227-2358aabe821e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aXNsYW5kfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" />
+        <% end %>
+        <div class="card-trip-infos">
+          <div class="island-info">
+            <h2><%= link_to island.name, island_path(island) %></h2>
+            <p><%= island.territory %></p>
+            <p><%= island.description %></p>
+            <p>Size: <%= island.size %></p>
           </div>
+            <div class="card-trip-pricing">
+              <p>
+                <%= island.price_per_day%>
+              </p>
+            </div>
+        </div>
       </div>
-    </div>
+    <%end %>
   <% end %>
 </div>
 

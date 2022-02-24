@@ -1,37 +1,27 @@
 <h1 style="font-family: 'Poppins', sans-serif; font-size: 1rem;"><%= @user.email %> dashboard</h1>
 
-<h4 style="font-family: 'Poppins', sans-serif; font-size: 1rem;">recieved bookings:</h4>
-<div class="cards">
-  <% @received_bookings.each do |received_booking| %>
-    <div class="card-trip">
-        <img src="https://images.unsplash.com/photo-1553603227-2358aabe821e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aXNsYW5kfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" />
-        <div class="card-trip-infos">
-          <div class="island-info">
-            <h2><%= link_to received_booking.island.name, island_path(received_booking.island) %></h2>
-            <p><%= received_booking.island.territory %></p>
-            <p><%= received_booking.island.description %></p>
-            <p>Size: <%= received_booking.island.size %></p>
-            <p>start date: <%= received_booking.start_date %></p>
-            <p>end date: <%= received_booking.end_date %></p>
-            <p>total price: <%= received_booking.total_price %></p>
-            <% if received_booking.status == 'pending' %>
-              <div style="display: flex;">
-                <%= button_to 'accept', booking_path(received_booking, {status: 'accepted'}), method: :patch, class: "btn btn-primary"%>
-                <%= button_to 'decline', booking_path(received_booking, {status: 'declined'}), method: :patch, class: "btn btn-primary" %>
-              </div>
-            <% elsif received_booking.status == 'accepted' %>
-              <p>accepted</p>
-            <% else %>
-              <p>declined</p>
-            <% end %>
-          </div>
-            <div class="card-trip-pricing">
-              <p>
-                <%= received_booking.total_price%>
-              </p>
-            </div>
-        </div>
-      </div>
+
+<h3>Owned slands for rent:</h3>
+<% @islands.each do |island| %>
+  <% if current_user == island.user %>
+    <p><%= link_to island.name, island_path(island) %></p>
+  <%end %>
+<% end %>
+
+
+<h3>recieved bookings:</h3>
+<% @received_bookings.each do |received_booking| %>
+  <p>start date: <%= received_booking.start_date %></p>
+  <p>end date: <%= received_booking.end_date %></p>
+  <p>comment: <%= received_booking.comment %></p>
+  <p>total price: <%= received_booking.cal_total_price %> $</p>
+  <% if received_booking.status == 'pending' %>
+    <%= button_to 'accept', booking_path(received_booking, {status: 'accepted'}), method: :patch %>
+    <%= button_to 'decline', booking_path(received_booking, {status: 'declined'}), method: :patch %>
+  <% elsif received_booking.status == 'accepted' %>
+    <p>accepted</p>
+  <% else %>
+    <p>declined</p>
   <% end %>
 </div>
 
@@ -40,32 +30,7 @@
 <h4 style="font-family: 'Poppins', sans-serif; font-size: 1rem;">applied bookings</h4>
 <div class="cards">
 <% @applied_bookings.each do |applied_booking| %>
- <div class="card-trip">
-        <img src="https://images.unsplash.com/photo-1553603227-2358aabe821e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aXNsYW5kfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" />
-        <div class="card-trip-infos">
-          <div class="island-info">
-            <h2><%= link_to applied_booking.island.name, island_path(applied_booking.island) %></h2>
-            <p><%= applied_booking.island.territory %></p>
-            <p><%= applied_booking.island.description %></p>
-            <p>Size: <%= applied_booking.island.size %></p>
-            <p>start date: <%= applied_booking.start_date %></p>
-            <p>end date: <%= applied_booking.end_date %></p>
-            <p>total price: <%= applied_booking.total_price %></p>
-            <% if applied_booking.status == 'accepted' %>
-              <p>accepted</p>
-             <% elsif applied_booking.status == 'pending' %>
-             <p>pending</p>
-            <% else %>
-              <p>declined</p>
-            <% end %>
-          </div>
-            <div class="card-trip-pricing">
-              <p>
-                <%= applied_booking.total_price%>
-              </p>
-            </div>
-        </div>
-      </div>
+
 <% end %>
 </div>
 
