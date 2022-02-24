@@ -1,7 +1,7 @@
-<h1 style="font-family: 'Poppins', sans-serif; font-size: 1rem;"><%= @user.email %> dashboard</h1>
-
+<h1><%= @user.email %> dashboard</h1>
 
 <h3>Owned slands for rent:</h3>
+
 <% @islands.each do |island| %>
   <% if current_user == island.user %>
     <p><%= link_to island.name, island_path(island) %></p>
@@ -23,18 +23,25 @@
   <% else %>
     <p>declined</p>
   <% end %>
-</div>
+
+
 
 
 
 <h4 style="font-family: American Typewriter">applied bookings</h4>
 <div class="cards">
+
+
+
+<h3>applied bookings</h3>
 <% @applied_bookings.each do |applied_booking| %>
-
+  <p>start date: <%= applied_booking.start_date %></p>
+  <p>end date: <%= applied_booking.end_date %></p>
+  <p>total price: <%= applied_booking.cal_total_price %> $</p>
+  <p>status: <%= applied_booking.status %></p>
 <% end %>
-</div>
 
-<%= link_to 'Back to all the islands', islands_path, class: "btn btn-primary" %>
+<%= link_to 'Back to all the islands', islands_path %>
 <%# display all recived/applied bookings %>
 <%# for the recieved bookings - add accpt/regect btn %>
 <%# applied bookings - see the status %>

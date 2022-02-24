@@ -29,15 +29,13 @@ body{
   align-items: center;
   padding-bottom: 38px;
   color: white;
-
+  font-family: "American Typewriter";
   text-transform: inherit;
   font-size: 26px;
-  font-family: 'Poppins', sans-serif;
 }
 
 .footer-country{
   font-size: 20px;
-  font-family: 'Poppins', sans-serif;
 }
 .countries-list {
   list-style: none;
@@ -57,9 +55,8 @@ p{
   margin-top: -16px;
   margin-bottom: 1rem;
   height: 23px;
-  font-family: 'Poppins', sans-serif;
 }
 input{
-  border-radius: 46px !important;
+  border-radius: 46px;
   border-color: #545775;
 }
