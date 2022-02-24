@@ -1,7 +1,8 @@
 <%= render "shared/hero" %>
 <%# <%= render "shared/card" %>
 <div class="containt-body">
-<h2 class = 'Title'>Find the island of your dreams</h2>
+<h2 class = 'Title' style="font-family: American Typewriter">Find the island of your dreams</h2>
+<center><img src="https://www.collinsdictionary.com/images/full/island_526092568_1000.jpg" class="imgbd"></center>
 <p><center>IslandBoi is the dream of every soul that desires a restful vacation.
 <br>
 Wether you're a a loner or a family member, you can alway find peace in your private island.
@@ -11,15 +12,26 @@ We know that different times in life won't really allow you to buy your private 
 therefore we came with the idea of renting your own island for the exact time and dates that you are looking for.
 </center></p>
 </div>
-<div class="carousels">
+
+
+<%# <div class="container">
+  <div class="content">
+    <h1>Pratham</h1>
+    <h3>I love designing websites and keep things as simple as possible. My goals is to focus on minimalism and conveying the message that you want to send</h3>
+  </div>
+  <div class="flap"></div>
+</div> %>
+
+
+
+<%# <div class="carousels">
 <p id="home-text" >These are the steps to rent the island of your dreams: </p>
 <br>
-<section class="carousel" aria-label="Gallery">
+<section class="carousel" aria-label="Gallery"> %>
 
+  <%# <ol class="carousel__viewport"> %>
 
-  <ol class="carousel__viewport">
-
-    <li id="carousel__slide1" style="background-image: url('https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y29tcHV0ZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60');"
+    <%# <li id="carousel__slide1" style="background-image: url('https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y29tcHV0ZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60');"
         tabindex="0"
         class="carousel__slide">
         <div class="carousel__slide--content">
@@ -89,7 +101,11 @@ therefore we came with the idea of renting your own island for the exact time an
       </li>
     </ol>
   </aside>
-</section>
+</section> %>
+
+
+
+
 <%# <p class ="carousel-text" id="home-text"> These are the steps to rent out your precious island</p>
 
 <section class="carousel" aria-label="Gallery">
@@ -172,10 +188,17 @@ therefore we came with the idea of renting your own island for the exact time an
 <center>
 <h1>Do you have an island you want to rent out?</h1>
 <br>
+<strong>
 <p>You can stop the lookout for clients!
 <br>
 IslandBoi allows you to literally find costumers to rent out your precsious Island!
 </p>
-<button class="btn1">I want to rent out my island</button>
+</strong>
+<% if user_signed_in? %>
+  <%= link_to "I want to rent out my island", new_island_path, class: "btn1" %>
+<% else %>
+  <%= link_to "I want to rent out my island", new_user_registration_path, class: "btn1" %>
+<% end %>
+<%# <button class="btn1">I want to rent out my island</button> %>
 </center>
 </div>
