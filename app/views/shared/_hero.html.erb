@@ -2,12 +2,14 @@
   <div class="hero-text">
       <div class="firsthead"><h1><strong>Looking for an Island?</strong></h1></div>
       <!--The centre text-->
-      <div class="secondhead"><p><strong>A simplified way to rent the Island of your dreamds, right here, right now!</strong></p></div>
+      <br>
+      <div class="secondhead"><p><strong>A simplified way to rent the Island of your dreams, right here, right now!</strong></p></div>
       <!--The centre text-->
-
+      <br>
       <div class="dropdown">
-        <button class="dropbtn"><strong>Choose A Continent</strong></button>
-        <div class="dropdown-content">
+        <%= link_to "Go to Islands", islands_path, class: "dropbtn" %>
+        <%# <button class="dropbtn"><strong><a href="#">Go to Islands</a></strong></button> %>
+        <%# <div class="dropdown-content">
           <a href="#">Asia</a>
           <a href="#">Africa</a>
           <a href="#">Europe</a>
@@ -15,7 +17,7 @@
           <a href="#">South America</a>
           <a href="#">Australia/Oceania</a>
           <a href="#">Antartica</a>
-        </div>
+        </div> %>
       </div>
 
       <%# <div class="btn"><button class="btn1" style="margin:20px;"><strong>I have an island</strong></button><button class="btn2"><strong>I'm looking for an island</strong></button></div> %>

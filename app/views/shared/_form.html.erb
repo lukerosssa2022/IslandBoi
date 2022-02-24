@@ -1,23 +1,26 @@
+<div class="form">
 <div id="form-container" class="container">
-<br>
-<br>
-<br>
-<br>
-  <%= simple_form_for(@island) do |f| %>
-    <div id="info">
-      <%= f.input :name, placeholder: "" %>
-      <%= f.input :territory, label: 'Country',
-              input_html: { data: { geocoder_target: "country" }, class: 'd-none' },
-              wrapper_html: { data: { controller: "geocoder", geocoder_api_key_value: ENV['MAPBOX_API_KEY'] } } %>
-      <%= f.input :size, placeholder: "" %>
-      <%= f.input :main_photo, as: :file, input_html: { multiple: false } %>
-      <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-      <%= f.input :price_per_day, placeholder: "" %>
-      <%= f.input :description, as: :text %>
-      <%= f.submit "Submit", class: "button" %>
-    </div>
-  <% end %>
-</div>
+  <br>
+  <br>
+  <br>
+  <br>
+    <%= simple_form_for(@island) do |f| %>
+      <div id="info">
+        <%= f.input :name, placeholder: "" %>
+        <%= f.input :territory, label: 'Country',
+                input_html: { data: { geocoder_target: "country" }, class: 'd-none' },
+                wrapper_html: { data: { controller: "geocoder", geocoder_api_key_value: ENV['MAPBOX_API_KEY'] } } %>
+        <%= f.input :size, placeholder: "" %>
+        <%= f.input :main_photo, as: :file, input_html: { multiple: false } %>
+        <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+        <%= f.input :price_per_day, placeholder: "" %>
+        <%= f.input :description, as: :text %>
+        <%= f.submit "Submit", class: "button" %>
+      </div>
+    <% end %>
+ </div>
+ </div>
+
 
 
 
